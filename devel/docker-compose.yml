@@ -1,0 +1,23 @@
+version: "2.3"
+services:
+
+  tensorflow:
+    image: braintwister/ubuntu-18.04-cuda-10.0-tensorflow-gpu-1.13-vscode-1.32
+    runtime: nvidia
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:ro 
+#      - /etc/localtime:/etc/localtime:ro
+      - home:/home/${USER_NAME}
+      - ${GIT_DIR}:/home/${USER_NAME}/git
+    environment:
+      - DISPLAY
+      - USER_ID=${USER_ID}
+      - GROUP_ID=${GROUP_ID}
+      - USER_NAME=${USER_NAME}
+      - GROUP_NAME=${GROUP_NAME}
+    ports:
+      - 6006:6006
+    privileged: true
+
+volumes:
+  home:
