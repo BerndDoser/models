@@ -29,6 +29,10 @@ from official.resnet import resnet_run_loop
 from official.utils.flags import core as flags_core
 from official.utils.logs import logger
 
+config = tf.ConfigProto()
+config.gpu_options.allow_growth = True
+sess = tf.Session(config=config)
+
 HEIGHT = 32
 WIDTH = 32
 NUM_CHANNELS = 3
